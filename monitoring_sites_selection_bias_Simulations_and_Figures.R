@@ -301,7 +301,7 @@ plot_results_var_dependence_gradient <- ggplot(df_all_results_var_dependence_gra
   geom_rect(data = NULL, aes(xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 1), fill = "lightgrey") +
   geom_boxplot(fill = NA) +
   theme_classic() +
-  theme(text = element_text(size = 15)) +
+  theme(text = element_text(size = 19)) +
   geom_hline(yintercept = 1, linetype = "dashed") +
   xlab("Coefficient between temporal variance and abundance") +
   ylab("Apparent Population Change")
@@ -439,7 +439,7 @@ plot_rate_05 <- ggplot(df_abundances_05, aes(x = year, y = abundance, group = si
 # arrange the plots together to make the figure
 Figure1 <- ggarrange(plot_rate_0005, plot_rate_005, plot_rate_05,
                      plot_results_variance_depending_on_abundance,
-                     labels = c("A", "B", "C", "D"),
+                     labels = c("(a)", "(b)", "(c)", "(d)"),
                      ncol = 2, nrow = 2)
 
 # save the plot
@@ -514,7 +514,7 @@ plot_dep02 <- ggplot(df_abundances_dep02, aes(x = year, y = abundance, group = s
   geom_line(data = subset(df_abundances_dep02, df_abundances_dep02$site_ID == "9"), color = my_palette[9], size = 1) +
   geom_line(data = subset(df_abundances_dep02, df_abundances_dep02$site_ID == "10"), color = my_palette[10], size = 1) +
   theme_classic() +
-  theme(text = element_text(size = 15), plot.title = element_text(hjust = 0.5)) +
+  theme(text = element_text(size = 19), plot.title = element_text(hjust = 0.5)) +
   xlab("Year") +
   ylab("Abundance") +
   ggtitle("Coefficient = 0.2")
@@ -532,7 +532,7 @@ plot_dep05 <- ggplot(df_abundances_dep05, aes(x = year, y = abundance, group = s
   geom_line(data = subset(df_abundances_dep05, df_abundances_dep05$site_ID == "9"), color = my_palette[9], size = 1) +
   geom_line(data = subset(df_abundances_dep05, df_abundances_dep05$site_ID == "10"), color = my_palette[10], size = 1) +
   theme_classic() +
-  theme(text = element_text(size = 15), plot.title = element_text(hjust = 0.5)) +
+  theme(text = element_text(size = 19), plot.title = element_text(hjust = 0.5)) +
   xlab("Year") +
   ylab("Abundance") +
   ggtitle("Coefficient = 0.5")
@@ -550,22 +550,23 @@ plot_dep08 <- ggplot(df_abundances_dep08, aes(x = year, y = abundance, group = s
   geom_line(data = subset(df_abundances_dep08, df_abundances_dep08$site_ID == "9"), color = my_palette[9], size = 1) +
   geom_line(data = subset(df_abundances_dep08, df_abundances_dep08$site_ID == "10"), color = my_palette[10], size = 1) +
   theme_classic() +
-  theme(text = element_text(size = 15), plot.title = element_text(hjust = 0.5)) +
+  theme(text = element_text(size = 19), plot.title = element_text(hjust = 0.5)) +
   xlab("Year") +
   ylab("Abundance") +
   ggtitle("Coefficient = 0.8")
 
 
 # arrange the plots together to make the figure
-Figure2 <- ggarrange(ggarrange(plot_dep02, plot_dep05, plot_dep08, ncol = 3, labels = c("A", "B", "C")),
+Figure2 <- ggarrange(ggarrange(plot_dep02, plot_dep05, plot_dep08, ncol = 3,
+                               labels = c("(a)", "(b)", "(c)"), font.label = list(size = 19)),
                      plot_results_var_dependence_gradient,
-                     nrow = 2, labels = c(" ", "D"))
+                     nrow = 2, labels = c(" ", "(d)"), font.label = list(size = 19))
 
 # save the plot
-pdf(file = "./output/Figure2.pdf", width = 12, height = 10)
+pdf(file = "./output/Figure2.pdf", width = 13, height = 10)
 print(Figure2)
 dev.off()
-png(file = "./output/Figure2.png", width = 12, height = 10, units = "in", res = 600)
+png(file = "./output/Figure2.png", width = 13, height = 10, units = "in", res = 600)
 print(Figure2)
 dev.off()
 
